@@ -48,10 +48,10 @@ class _MobileVaccinationBodyState extends State<MobileVaccinationBody> {
                           ),
                     ),
                     CustomFittedButton(
-                      text: 'VOLTAR',
+                      text: 'CONSULTAR',
                       color: AppColors.accentColor,
                       onTap: () {
-                        Navigator.of(context).pushNamed('/');
+                        Navigator.of(context).pushNamed('/vacinacao/consulta');
                       },
                     ),
                   ],

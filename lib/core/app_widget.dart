@@ -6,6 +6,7 @@ import 'package:vacina_me/screens/about_screen/about_screen.dart';
 import 'package:vacina_me/screens/business_plan_screen/business_plan_screen.dart';
 import 'package:vacina_me/screens/contact_screen/contact_screen.dart';
 import 'package:vacina_me/screens/home_screen/home_screen.dart';
+import 'package:vacina_me/screens/search_vaccination_data_screen/mobile_search_vaccination_data_screen.dart';
 import 'package:vacina_me/screens/vaccination_screen/vaccination_screen.dart';
 
 class AppWidget extends StatelessWidget {
@@ -25,6 +26,9 @@ class AppWidget extends StatelessWidget {
         '/vacinacao': (context) => ChangeNotifierProvider(
           create: (context) => DatabaseModel(),
           child: VaccinationScreen(),),
+        '/vacinacao/consulta': (context) => ChangeNotifierProvider(
+          create: (context) => DatabaseModel(),
+          child: MobileSearchVaccinationDataScreen(),),
         '/contato': (context) => ContactScreen(),
         '/plano-de-negocios': (context) => BusinessPlanScreen(),
       }

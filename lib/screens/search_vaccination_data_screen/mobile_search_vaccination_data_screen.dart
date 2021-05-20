@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vacina_me/core/app_colors.dart';
 import 'package:vacina_me/screens/common_components/mobile_page_title.dart';
-import 'package:vacina_me/screens/vaccination_screen/components/mobile_vaccination_body.dart';
+import 'package:vacina_me/screens/search_vaccination_data_screen/components/mobile_search_vaccination_data_body.dart';
 
 class MobileSearchVaccinationDataScreen extends StatelessWidget {
   @override
@@ -10,18 +9,14 @@ class MobileSearchVaccinationDataScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.tertiaryColor,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
           centerTitle: true,
           title: MobilePageTitle(),
-          //   title: Text('Conheça'.toUpperCase(), style: GoogleFonts.roboto(
-          //   fontSize: 21.0,
-          //   color: Colors.white,
-          // ),),
         ),
-        body: MobileVaccinationBody(size: size),
+        body: MobileSearchVaccinationDataBody(size: size),
       ),
     );
   }
