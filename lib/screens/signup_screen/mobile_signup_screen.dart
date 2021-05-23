@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vacina_me/core/app_colors.dart';
 import 'package:vacina_me/screens/common_components/mobile_page_title.dart';
-import 'package:vacina_me/screens/vaccination_screen/components/mobile_vaccination_body.dart';
+import 'package:vacina_me/screens/signup_screen/components/mobile_signup_body.dart';
 
-class MobileVaccinationScreen extends StatelessWidget {
+class MobileSignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,7 +17,7 @@ class MobileVaccinationScreen extends StatelessWidget {
           centerTitle: true,
           title: MobilePageTitle(),
         ),
-        body: MobileVaccinationBody(size: size),
+        body: MobileSignupBody(size: size),
       ),
     );
   }

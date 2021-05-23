@@ -15,7 +15,7 @@ class CustomImageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-          child: ElevatedButton(
+      child: ElevatedButton(
         onPressed: onPressed,
         child: Image.asset(
           imagePath,

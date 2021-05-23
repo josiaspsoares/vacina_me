@@ -4,6 +4,12 @@ import 'package:vacina_me/core/app_colors.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class VaccinationDataCard extends StatelessWidget {
+  const VaccinationDataCard({Key? key, required this.name, required this.age})
+      : super(key: key);
+
+  final String name;
+  final int age;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,20 +27,14 @@ class VaccinationDataCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AutoSizeText(
-                  'Josias Pereira Soares',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    color: AppColors.textColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
+            AutoSizeText(
+              name,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                color: AppColors.textColor,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 10),
@@ -47,14 +47,14 @@ class VaccinationDataCard extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: 80,
-                          height: 80,
+                          width: 90,
+                          height: 90,
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                           ),
                           child: Image.asset(
-                            'assets/images/contact_screen/josias_avatar.jpg',
+                            'assets/images/vaccination_data_search_screen/user_avatar.png',
                           ),
                         )
                       ],
@@ -70,7 +70,7 @@ class VaccinationDataCard extends StatelessWidget {
                           children: [
                             Expanded(
                               child: AutoSizeText(
-                                'Idade: 20 anos',
+                                'Idade: $age anos',
                                 style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.normal,

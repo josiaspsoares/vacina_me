@@ -47,7 +47,8 @@ flutter:
     - assets/images/home_screen/
     - assets/images/about_screen/
     - assets/images/contact_screen/
-    - assets/images/vaccination_screen/
+    - assets/images/signup_screen/
+    - assets/images/vaccination_data_search_screen/
     - assets/pdf/
 
   # An image asset can refer to one or more resolution-specific "variants", see
