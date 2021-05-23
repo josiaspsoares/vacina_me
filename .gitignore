@@ -47,3 +47,4 @@ app.*.map.json
 
 # Credentials
 /lib/models/database_model/credentials.dart
+/lib/repositories/database_repository/credentials.dart

@@ -12,8 +12,8 @@ class _BusinessPlanBodyState extends State<BusinessPlanBody> {
   @override
   void initState() {
     _pdfController = PdfController(
-    document: PdfDocument.openAsset('assets/pdf/business_plan.pdf'),
-  );
+      document: PdfDocument.openAsset('assets/pdf/business_plan.pdf'),
+    );
     super.initState();
   }
 
@@ -23,7 +23,6 @@ class _BusinessPlanBodyState extends State<BusinessPlanBody> {
     super.dispose();
   }
 
-  
   Widget pdfView() => PdfView(
         controller: _pdfController,
         scrollDirection: Axis.vertical,

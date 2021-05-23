@@ -1,17 +1,20 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:vacina_me/controllers/signup_controller/signup_controller.dart';
 import 'package:vacina_me/core/app_text_styles.dart';
-import 'package:vacina_me/controllers/citizen_controller/citizen_controller.dart';
 import 'package:vacina_me/screens/common_components/custom_button.dart';
+import 'package:vacina_me/viewmodel/signup_viewmodel/signup_viewmodel.dart';
 
-class VaccinationRegisterForm extends StatefulWidget {
+class SignupForm extends StatefulWidget {
   @override
-  _VaccinationRegisterFormState createState() =>
-      _VaccinationRegisterFormState();
+  _SignupFormState createState() => _SignupFormState();
 }
 
-class _VaccinationRegisterFormState extends State<VaccinationRegisterForm> {
+class _SignupFormState extends State<SignupForm> {
   final _formKey = GlobalKey<FormState>();
+  final _controller = SignupController();
+  var model = SignupViewModel();
+
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _cpfController = TextEditingController();
@@ -136,15 +139,13 @@ class _VaccinationRegisterFormState extends State<VaccinationRegisterForm> {
           CustomButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                CitizenController(context: context)
-                    .registerCitizen(
-                  name: _nameController.text,
-                  email: _emailController.text,
-                  cpf: _cpfController.text,
-                  age: int.parse(_ageController.text),
-                  priorityGroupCode: _selectedPriorityGroupCode,
-                )
-                    .then((value) {
+                model.name = _nameController.text;
+                model.email = _emailController.text;
+                model.cpf = _cpfController.text;
+                model.age = _ageController.text;
+                model.priorityGroupCode = _selectedPriorityGroupCode.toString();
+
+                _controller.create(model).then((value) {
                   if (value == 'success') {
                     _formKey.currentState!.reset();
                     AwesomeDialog(
@@ -170,12 +171,27 @@ class _VaccinationRegisterFormState extends State<VaccinationRegisterForm> {
                         animType: AnimType.RIGHSLIDE,
                         headerAnimationLoop: false,
                         title: 'Falha ao Realizar Cadastro',
-                        desc: value == '1062' ? 'Parece que você já realizou um cadastro anteriormente. Verifique o e-mail e o CPF informados!' : 'Ops! Houve um erro ao registrar suas informações. Por favor, entre em contato com nossa equipe (ERRO: $value)',
+                        desc: value == '1062'
+                            ? 'Parece que você já realizou um cadastro anteriormente. Verifique o e-mail e o CPF informados!'
+                            : 'Ops! Houve um erro ao registrar suas informações. Por favor, entre em contato com nossa equipe! (ERRO: $value)',
                         btnOkOnPress: () {},
                         btnOkIcon: Icons.cancel,
                         btnOkColor: Colors.red)
                       ..show();
                   }
+                }).onError((error, stackTrace) {
+                  AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.ERROR,
+                      animType: AnimType.RIGHSLIDE,
+                      headerAnimationLoop: false,
+                      title: 'Falha ao Realizar Cadastro',
+                      desc:
+                          'Ops! Houve um erro ao registrar suas informações. Por favor, entre em contato com nossa equipe\n\nERRO: ${error.toString()}',
+                      btnOkOnPress: () {},
+                      btnOkIcon: Icons.cancel,
+                      btnOkColor: Colors.red)
+                    ..show();
                 });
               }
             },

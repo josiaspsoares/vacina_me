@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vacina_me/core/app_colors.dart';
 import 'package:vacina_me/screens/common_components/mobile_page_title.dart';
-import 'package:vacina_me/screens/vaccination_screen/components/mobile_vaccination_body.dart';
+import 'package:vacina_me/screens/vaccination_data_search_screen/components/mobile_vaccination_data_search_body.dart';
 
-class MobileSearchVaccinationDataScreen extends StatelessWidget {
+class MobileVaccinationDataSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -16,12 +16,8 @@ class MobileSearchVaccinationDataScreen extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
           centerTitle: true,
           title: MobilePageTitle(),
-          //   title: Text('Conheça'.toUpperCase(), style: GoogleFonts.roboto(
-          //   fontSize: 21.0,
-          //   color: Colors.white,
-          // ),),
         ),
-        body: MobileVaccinationBody(size: size),
+        body: MobileVaccinationDataSearchBody(size: size),
       ),
     );
   }

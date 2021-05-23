@@ -34,14 +34,14 @@ class DrawerBody extends StatelessWidget {
             Navigator.of(context).pushNamed('/sobre');
           },
         ),
-        if(!kIsWeb) 
-        DrawerItem(
-          title: 'Vacinação',
-          icon: Icons.medical_services,
-          onTap: () {
-            Navigator.of(context).pushNamed('/vacinacao');
-          },
-        ),
+        if (!kIsWeb)
+          DrawerItem(
+            title: 'Vacinação',
+            icon: Icons.medical_services,
+            onTap: () {
+              Navigator.of(context).pushNamed('/vacinacao');
+            },
+          ),
         DrawerItem(
           title: 'Contato',
           icon: Icons.contact_page,

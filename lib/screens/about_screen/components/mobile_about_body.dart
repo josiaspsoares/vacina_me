@@ -76,7 +76,8 @@ class MobileAboutBody extends StatelessWidget {
                 child: Column(
                   children: [
                     CommonQuestionsPanel(
-                      backgroundColor: AppColors.quaternaryColor.withOpacity(0.9),
+                      backgroundColor:
+                          AppColors.quaternaryColor.withOpacity(0.9),
                       headerTextColor: Colors.white,
                     ),
                     SizedBox(height: 25.0),

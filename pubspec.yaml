@@ -33,6 +33,7 @@ dependencies:
   native_pdf_view: ^4.0.1
   provider: ^5.0.0
   awesome_dialog: ^2.0.0
+  auto_size_text: ^3.0.0-nullsafety.0
 
 dev_dependencies:
   flutter_test:
@@ -46,7 +47,8 @@ flutter:
     - assets/images/home_screen/
     - assets/images/about_screen/
     - assets/images/contact_screen/
-    - assets/images/vaccination_screen/
+    - assets/images/signup_screen/
+    - assets/images/vaccination_data_search_screen/
     - assets/pdf/
 
   # An image asset can refer to one or more resolution-specific "variants", see

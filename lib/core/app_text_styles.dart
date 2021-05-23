@@ -20,6 +20,6 @@ class AppTextStyles {
 
   static final TextStyle vaccinationForm = GoogleFonts.roboto(
     fontSize: 15.0,
-    color:  AppColors.textColor,
+    color: AppColors.textColor,
   );
 }
