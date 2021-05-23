@@ -125,7 +125,7 @@ class _VaccinationDataSearchFormState extends State<VaccinationDataSearchForm> {
                       headerAnimationLoop: false,
                       title: 'Falha ao Consultar Dados',
                       desc:
-                          'Ops! Houve um erro ao buscar suas informações. Por favor, entre em contato com nossa equipe!\n\nERRO: ${error.toString()}',
+                          'Ops! Houve uma falha ao buscar suas informações. Por favor, entre em contato com nossa equipe!\n\nERRO: ${error.toString()}',
                       btnOkOnPress: () {},
                       btnOkIcon: Icons.cancel,
                       btnOkColor: Colors.red)
