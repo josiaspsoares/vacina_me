@@ -47,7 +47,8 @@ class MobileContactBody extends StatelessWidget {
                       text: 'Divulgue',
                       color: AppColors.contactScreenButtonColor,
                       onTap: () {
-                        Share.share('Conheça a Startup VacinaMe, visite nosso site https://vaciname.web.app e saiba mais!');
+                        Share.share(
+                            'Conheça a Startup VacinaMe, visite nosso site https://vaciname.web.app e saiba mais!');
                       },
                     ),
                   ],

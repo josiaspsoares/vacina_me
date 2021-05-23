@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vacina_me/core/app_colors.dart';
 import 'package:vacina_me/screens/common_components/custom_fitted_button.dart';
-import 'package:vacina_me/screens/vaccination_screen/components/vaccination_register_form.dart';
-import 'package:vacina_me/screens/vaccination_screen/components/vaccination_texts.dart';
+import 'package:vacina_me/screens/signup_screen/components/signup_form.dart';
+import 'package:vacina_me/screens/signup_screen/components/signup_texts.dart';
 
-
-class MobileVaccinationBody extends StatefulWidget {
-  const MobileVaccinationBody({
+class MobileSignupBody extends StatefulWidget {
+  const MobileSignupBody({
     Key? key,
     required this.size,
   }) : super(key: key);
@@ -14,10 +13,10 @@ class MobileVaccinationBody extends StatefulWidget {
   final Size size;
 
   @override
-  _MobileVaccinationBodyState createState() => _MobileVaccinationBodyState();
+  _MobileSignupBodyState createState() => _MobileSignupBodyState();
 }
 
-class _MobileVaccinationBodyState extends State<MobileVaccinationBody> {
+class _MobileSignupBodyState extends State<MobileSignupBody> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -28,7 +27,7 @@ class _MobileVaccinationBodyState extends State<MobileVaccinationBody> {
             children: [
               Container(
                 child: Image.asset(
-                    'assets/images/vaccination_screen/vaccination_background.png'),
+                    'assets/images/signup_screen/signup_background.png'),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius:
@@ -40,7 +39,7 @@ class _MobileVaccinationBodyState extends State<MobileVaccinationBody> {
                 child: Column(
                   children: [
                     Text(
-                      vaccinationTitle.toUpperCase(),
+                      signupTitle.toUpperCase(),
                       style: Theme.of(context).textTheme.headline1!.copyWith(
                             color: AppColors.textColor,
                             fontWeight: FontWeight.bold,
@@ -48,10 +47,10 @@ class _MobileVaccinationBodyState extends State<MobileVaccinationBody> {
                           ),
                     ),
                     CustomFittedButton(
-                      text: 'VOLTAR',
+                      text: 'CONSULTE',
                       color: AppColors.accentColor,
                       onTap: () {
-                        Navigator.of(context).pushNamed('/');
+                        Navigator.of(context).pushNamed('/vacinacao/consulta');
                       },
                     ),
                   ],
@@ -71,7 +70,7 @@ class _MobileVaccinationBodyState extends State<MobileVaccinationBody> {
                 ),
                 child: Column(
                   children: [
-                   VaccinationRegisterForm(),
+                    SignupForm(),
                   ],
                 ),
               ),

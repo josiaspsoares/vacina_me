@@ -6,5 +6,4 @@ class CitizenModel {
   int? priorityGroupCode;
   int vaccinationStatusCode = 0;
   int covidVaccineCode = 0;
-
 }

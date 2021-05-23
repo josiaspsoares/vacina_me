@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:vacina_me/screens/common_components/app_bar.dart';
-import 'package:vacina_me/screens/vaccination_screen/components/vaccination_body.dart';
-import 'package:vacina_me/screens/vaccination_screen/mobile_vaccination_screen.dart';
+import 'package:vacina_me/screens/signup_screen/components/signup_body.dart';
+import 'package:vacina_me/screens/signup_screen/mobile_signup_screen.dart';
 
-
-class VaccinationScreen extends StatelessWidget {
+class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     if (size.width < 1024) {
-      return MobileVaccinationScreen();
+      return MobileSignupScreen();
     }
 
     return Scaffold(
@@ -20,7 +19,8 @@ class VaccinationScreen extends StatelessWidget {
         width: size.width,
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/images/vaccination_screen/vaccination_background.png'),
+          image:
+              AssetImage('assets/images/signup_screen/signup_background.png'),
           fit: BoxFit.cover,
         )),
         child: Scrollbar(
@@ -28,7 +28,7 @@ class VaccinationScreen extends StatelessWidget {
           child: ListView(
             children: [
               SizedBox(height: size.height / 9),
-              VaccinationBody(),
+              SignupBody(),
               SizedBox(height: size.height / 9),
             ],
           ),

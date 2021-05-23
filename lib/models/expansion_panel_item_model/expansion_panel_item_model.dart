@@ -1,5 +1,5 @@
 class ExpansionPanelItemModel {
-  ExpansionPanelItemModel ({
+  ExpansionPanelItemModel({
     required this.headerValue,
     required this.expandedValue,
     this.isExpanded = false,

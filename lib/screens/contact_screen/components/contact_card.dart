@@ -91,26 +91,18 @@ class ContactCard extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
-              children: [
-                IconButton(
-                    onPressed: () => _sendEmail(email),
-                    icon: Icon(
-                      Icons.email,
-                      color: AppColors.homeButton.withOpacity(0.7),
-                    )),
-              ],
-            ),
-            Column(
-              children: [
-                InkWell(
-                  onTap: () => _sendWhatsAppMessage(telefone),
-                  child: Image.asset(
-                    'assets/images/contact_screen/whatsapp_icon.png',
-                    height: 25,
-                  ),
-                ),
-              ],
+            IconButton(
+                onPressed: () => _sendEmail(email),
+                icon: Icon(
+                  Icons.email,
+                  color: AppColors.homeButton.withOpacity(0.7),
+                )),
+            InkWell(
+              onTap: () => _sendWhatsAppMessage(telefone),
+              child: Image.asset(
+                'assets/images/contact_screen/whatsapp_icon.png',
+                height: 25,
+              ),
             ),
           ],
         ),

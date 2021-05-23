@@ -11,7 +11,7 @@ class CitizenController {
     required this.context,
   });
 
-  Future<String?> registerCitizen ({
+  Future<String?> registerCitizen({
     required String name,
     required String email,
     required String cpf,
@@ -23,8 +23,7 @@ class CitizenController {
     citizen.cpf = cpf;
     citizen.age = age;
     citizen.priorityGroupCode = priorityGroupCode;
-    return await Provider.of<DatabaseModel>(context, listen: false).insert(citizen);
+    return await Provider.of<DatabaseModel>(context, listen: false)
+        .insert(citizen);
   }
-
-  
 }

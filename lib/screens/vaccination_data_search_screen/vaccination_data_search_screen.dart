@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:vacina_me/screens/common_components/app_bar.dart';
-import 'package:vacina_me/screens/search_vaccination_data_screen/mobile_search_vaccination_data_screen.dart';
-import 'package:vacina_me/screens/vaccination_screen/components/vaccination_body.dart';
+import 'package:vacina_me/screens/signup_screen/components/signup_body.dart';
+import 'package:vacina_me/screens/vaccination_data_search_screen/mobile_vaccination_data_search_screen.dart';
 
-class SearchVaccinationDataScreen extends StatelessWidget {
+class VaccinationDataSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     if (size.width < 1024) {
-      return MobileSearchVaccinationDataScreen();
+      return MobileVaccinationDataSearchScreen();
     }
 
     return Scaffold(
@@ -27,7 +27,7 @@ class SearchVaccinationDataScreen extends StatelessWidget {
           child: ListView(
             children: [
               SizedBox(height: size.height / 9),
-              VaccinationBody(),
+              SignupBody(),
               SizedBox(height: size.height / 9),
             ],
           ),

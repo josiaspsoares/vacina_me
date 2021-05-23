@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vacina_me/models/database_model/database_model.dart';
-import 'package:vacina_me/screens/vaccination_screen/components/vaccination_register_form.dart';
+import 'package:vacina_me/screens/signup_screen/components/signup_form.dart';
 
-class VaccinationBody extends StatefulWidget {
+class SignupBody extends StatefulWidget {
   @override
-  _VaccinationBodyState createState() => _VaccinationBodyState();
+  _SignupBodyState createState() => _SignupBodyState();
 }
 
-class _VaccinationBodyState extends State<VaccinationBody> {
+class _SignupBodyState extends State<SignupBody> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,8 +19,8 @@ class _VaccinationBodyState extends State<VaccinationBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(width: size.width / 3, child: VaccinationRegisterForm()),
-            // SizedBox(height: 20.0),
+            Container(width: size.width / 3, child: SignupForm()),
+            SizedBox(height: 20.0),
             // StreamBuilder<Results>(
             //     stream: database.read().asStream(),
             //     builder: (context, snapshot) {
@@ -30,15 +30,7 @@ class _VaccinationBodyState extends State<VaccinationBody> {
             //           if (snapshot.connectionState == ConnectionState.done)
             //             if (snapshot.data != null)
             //               for (var row in snapshot.data!)
-            //                 Container(
-            //                   child: SelectableText(
-            //                     "Nome: ${row[0]}, CPF: ${row[1]}, Idade: ${row[2]}",
-            //                     style: TextStyle(
-            //                       fontSize: 18,
-            //                       color: kTextColor.withOpacity(0.8),
-            //                     ),
-            //                   ),
-            //                 ),
+            //                 VaccinationDataCard(name: row[0], age: row[2])
             //         ],
             //       );
             //     }),
