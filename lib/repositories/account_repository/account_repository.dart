@@ -21,7 +21,6 @@ class AccountRepository {
           ]);
       return "success";
     } on MySqlException catch (e) {
-      print(e.toString());
       return e.errorNumber.toString();
     }
   }
@@ -38,7 +37,6 @@ class AccountRepository {
           ]);
 
       for (var row in results) {
-        print("Nome: ${row[0]}, CPF: ${row[1]}, Idade: ${row[2]}");
         return UserModel(
           name: row[0],
           email: row[1],

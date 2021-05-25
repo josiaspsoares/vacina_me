@@ -92,7 +92,7 @@ class _VaccinationDataSearchFormState extends State<VaccinationDataSearchForm> {
                         body: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10.0),
                           child: VaccinationDataCard(
-                              name: value.name!, age: value.age!),
+                              name: value.name, age: value.age),
                         ),
                         btnOkOnPress: () {
                           Navigator.pop(context);
