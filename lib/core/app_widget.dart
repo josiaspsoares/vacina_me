@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vacina_me/controllers/signup_controller/signup_controller.dart';
 import 'package:vacina_me/core/app_colors.dart';
-import 'package:vacina_me/models/database_model/database_model.dart';
 import 'package:vacina_me/screens/about_screen/about_screen.dart';
 import 'package:vacina_me/screens/business_plan_screen/business_plan_screen.dart';
 import 'package:vacina_me/screens/contact_screen/contact_screen.dart';
@@ -12,27 +12,28 @@ import 'package:vacina_me/screens/vaccination_data_search_screen/vaccination_dat
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'VacinaMe',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: AppColors.primaryColor,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => SignupController(),
         ),
-        initialRoute: '/',
-        routes: {
-          '/': (context) => HomeScreen(),
-          '/sobre': (context) => AboutScreen(),
-          '/vacinacao': (context) => ChangeNotifierProvider(
-                create: (context) => DatabaseModel(),
-                child: SignupScreen(),
-              ),
-          '/vacinacao/consulta': (context) => ChangeNotifierProvider(
-                create: (context) => DatabaseModel(),
-                child: VaccinationDataSearchScreen(),
-              ),
-          '/contato': (context) => ContactScreen(),
-          '/plano-de-negocios': (context) => BusinessPlanScreen(),
-        });
+      ],
+      child: MaterialApp(
+          title: 'VacinaMe',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primaryColor: AppColors.primaryColor,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => HomeScreen(),
+            '/sobre': (context) => AboutScreen(),
+            '/vacinacao': (context) => SignupScreen(),
+            '/vacinacao/consulta': (context) => VaccinationDataSearchScreen(),
+            '/contato': (context) => ContactScreen(),
+            '/plano-de-negocios': (context) => BusinessPlanScreen(),
+          }),
+    );
   }
 }

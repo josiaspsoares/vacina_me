@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 class UserModel {
-  String? name;
-  String? cpf;
-  String? email;
-  int? age;
-  int? priorityGroupCode;
-  int? vaccinationStatusCode;
-  int? covidVaccineCode;
+  String name;
+  String cpf;
+  String email;
+  int age;
+  int priorityGroupCode;
+  int vaccinationStatusCode;
+  int covidVaccineCode;
 
   UserModel({
     required this.name,
@@ -17,25 +19,32 @@ class UserModel {
     required this.covidVaccineCode,
   });
 
-  UserModel.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    cpf = json['cpf'];
-    email = json['email'];
-    age = json['age'];
-    priorityGroupCode = json['priorityGroupCode'];
-    vaccinationStatusCode = json['vaccinationStatusCode'];
-    covidVaccineCode = json['covidVaccineCode'];
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'cpf': cpf,
+      'email': email,
+      'age': age,
+      'priorityGroupCode': priorityGroupCode,
+      'vaccinationStatusCode': vaccinationStatusCode,
+      'covidVaccineCode': covidVaccineCode,
+    };
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['cpf'] = this.cpf;
-    data['email'] = this.email;
-    data['age'] = this.age;
-    data['priorityGroupCode'] = this.priorityGroupCode;
-    data['vaccinationStatusCode'] = this.vaccinationStatusCode;
-    data['covidVaccineCode'] = this.covidVaccineCode;
-    return data;
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      name: map['name'],
+      cpf: map['cpf'],
+      email: map['email'],
+      age: map['age'],
+      priorityGroupCode: map['priorityGroupCode'],
+      vaccinationStatusCode: map['vaccinationStatusCode'],
+      covidVaccineCode: map['covidVaccineCode'],
+    );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source));
 }
