@@ -38,6 +38,7 @@ class _VaccinationDataSearchFormState extends State<VaccinationDataSearchForm> {
               border: OutlineInputBorder(borderSide: BorderSide()),
             ),
             style: AppTextStyles.vaccinationForm,
+            keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -98,17 +99,19 @@ class _VaccinationDataSearchFormState extends State<VaccinationDataSearchForm> {
                               context: context,
                               animType: AnimType.BOTTOMSLIDE,
                               headerAnimationLoop: false,
-                              dialogType: DialogType.SUCCES,
-                              dialogBackgroundColor: AppColors.primaryColor,
+                              dialogType: DialogType.NO_HEADER,
+                              dialogBackgroundColor:  Color(0xFF467CDE),
                               body: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                                 child: VaccinationDataCard(
-                                    name: value.name, age: value.age),
+                                  model: value,
+                                ),
                               ),
                               btnOkOnPress: () {
                                 Navigator.pop(context);
                               },
                               btnOkText: "PRONTO",
+                              btnOkColor:  AppColors.accentColor,
                               btnOkIcon: Icons.check_circle,
                               onDissmissCallback: () {
                                 debugPrint('Dialog Dissmiss from callback');

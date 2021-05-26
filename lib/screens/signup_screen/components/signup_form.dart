@@ -55,6 +55,7 @@ class _SignupFormState extends State<SignupForm> {
               border: OutlineInputBorder(borderSide: BorderSide()),
             ),
             style: AppTextStyles.vaccinationForm,
+            keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -139,14 +140,13 @@ class _SignupFormState extends State<SignupForm> {
             items: dropdownMenuItems(),
           ),
           SizedBox(height: 25),
-          if( _controller.state == SignupState.loading)
-          Padding(
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 20),
-            child: LinearProgressIndicator(
-              color: AppColors.primaryColor,
-             
+          if (_controller.state == SignupState.loading)
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 20),
+              child: LinearProgressIndicator(
+                color: AppColors.primaryColor,
+              ),
             ),
-          ),
           CustomButton(
             onPressed: _controller.state == SignupState.loading
                 ? null
