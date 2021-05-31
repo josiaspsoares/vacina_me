@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vacina_me/controllers/signup_controller/signup_controller.dart';
+import 'package:vacina_me/controllers/vaccination_data_search_controller/vaccination_data_search_controller.dart';
 import 'package:vacina_me/core/app_colors.dart';
 import 'package:vacina_me/screens/about_screen/about_screen.dart';
 import 'package:vacina_me/screens/business_plan_screen/business_plan_screen.dart';
@@ -16,6 +17,9 @@ class AppWidget extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => SignupController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => VaccinationDataSearchController(),
         ),
       ],
       child: MaterialApp(

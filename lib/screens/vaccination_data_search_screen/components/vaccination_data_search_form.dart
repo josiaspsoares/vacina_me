@@ -7,6 +7,7 @@ import 'package:vacina_me/core/app_text_styles.dart';
 import 'package:vacina_me/screens/common_components/custom_button.dart';
 import 'package:vacina_me/screens/vaccination_data_search_screen/components/vaccination_data_card.dart';
 import 'package:vacina_me/viewmodel/vaccination_data_search_viewmodel/vaccination_data_search_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class VaccinationDataSearchForm extends StatefulWidget {
   @override
@@ -16,7 +17,6 @@ class VaccinationDataSearchForm extends StatefulWidget {
 
 class _VaccinationDataSearchFormState extends State<VaccinationDataSearchForm> {
   final _formKey = GlobalKey<FormState>();
-  final _controller = VaccinationDataSearchController();
   var model = VaccinationDataSearchViewModel();
 
   TextEditingController _emailController = TextEditingController();
@@ -24,6 +24,8 @@ class _VaccinationDataSearchFormState extends State<VaccinationDataSearchForm> {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = context.watch<VaccinationDataSearchController>();
+
     return Form(
       key: _formKey,
       child: Column(
@@ -36,6 +38,7 @@ class _VaccinationDataSearchFormState extends State<VaccinationDataSearchForm> {
               border: OutlineInputBorder(borderSide: BorderSide()),
             ),
             style: AppTextStyles.vaccinationForm,
+            keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -75,64 +78,75 @@ class _VaccinationDataSearchFormState extends State<VaccinationDataSearchForm> {
             },
           ),
           SizedBox(height: 25),
+          if (_controller.state == VaccinationDataSearchState.loading)
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 20),
+              child: LinearProgressIndicator(
+                color: AppColors.primaryColor,
+              ),
+            ),
           CustomButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                model.email = _emailController.text;
-                model.cpf = _cpfController.text;
+            onPressed: _controller.state == VaccinationDataSearchState.loading
+                ? null
+                : () {
+                    if (_formKey.currentState!.validate()) {
+                      model.email = _emailController.text;
+                      model.cpf = _cpfController.text;
 
-                _controller.search(model).then((value) {
-                  if (value != null) {
-                    AwesomeDialog(
-                        context: context,
-                        animType: AnimType.BOTTOMSLIDE,
-                        headerAnimationLoop: false,
-                        dialogType: DialogType.SUCCES,
-                        dialogBackgroundColor: AppColors.primaryColor,
-                        body: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                          child: VaccinationDataCard(
-                              name: value.name, age: value.age),
-                        ),
-                        btnOkOnPress: () {
-                          Navigator.pop(context);
-                        },
-                        btnOkText: "PRONTO",
-                        btnOkIcon: Icons.check_circle,
-                        onDissmissCallback: () {
-                          debugPrint('Dialog Dissmiss from callback');
-                        })
-                      ..show();
-                  } else {
-                    AwesomeDialog(
-                        context: context,
-                        dialogType: DialogType.ERROR,
-                        animType: AnimType.RIGHSLIDE,
-                        headerAnimationLoop: false,
-                        title: 'Falha ao Consultar Dados',
-                        desc:
-                            'Ops! Não conseguimos buscar suas informações, verifique se os dados informados estão corretos. Caso o problema persista, entre em contato conosco!',
-                        btnOkOnPress: () {},
-                        btnOkIcon: Icons.cancel,
-                        btnOkColor: Colors.red)
-                      ..show();
-                  }
-                }).onError((error, stackTrace) {
-                  AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.ERROR,
-                      animType: AnimType.RIGHSLIDE,
-                      headerAnimationLoop: false,
-                      title: 'Falha ao Consultar Dados',
-                      desc:
-                          'Ops! Houve uma falha ao buscar suas informações. Por favor, entre em contato com nossa equipe!\n\nERRO: ${error.toString()}',
-                      btnOkOnPress: () {},
-                      btnOkIcon: Icons.cancel,
-                      btnOkColor: Colors.red)
-                    ..show();
-                });
-              }
-            },
+                      _controller.search(model).then((value) {
+                        if (value != null) {
+                          AwesomeDialog(
+                              context: context,
+                              animType: AnimType.BOTTOMSLIDE,
+                              headerAnimationLoop: false,
+                              dialogType: DialogType.NO_HEADER,
+                              dialogBackgroundColor:  Color(0xFF467CDE),
+                              body: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                                child: VaccinationDataCard(
+                                  model: value,
+                                ),
+                              ),
+                              btnOkOnPress: () {
+                                Navigator.pop(context);
+                              },
+                              btnOkText: "PRONTO",
+                              btnOkColor:  AppColors.accentColor,
+                              btnOkIcon: Icons.check_circle,
+                              onDissmissCallback: () {
+                                debugPrint('Dialog Dissmiss from callback');
+                              })
+                            ..show();
+                        } else {
+                          AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.ERROR,
+                              animType: AnimType.RIGHSLIDE,
+                              headerAnimationLoop: false,
+                              title: 'Falha ao Consultar Dados',
+                              desc:
+                                  'Ops! Não conseguimos buscar suas informações, verifique se os dados informados estão corretos. Caso o problema persista, entre em contato conosco!',
+                              btnOkOnPress: () {},
+                              btnOkIcon: Icons.cancel,
+                              btnOkColor: Colors.red)
+                            ..show();
+                        }
+                      }).onError((error, stackTrace) {
+                        AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.ERROR,
+                            animType: AnimType.RIGHSLIDE,
+                            headerAnimationLoop: false,
+                            title: 'Falha ao Consultar Dados',
+                            desc:
+                                'Ops! Houve uma falha ao buscar suas informações. Por favor, entre em contato com nossa equipe!\n\nERRO: ${error.toString()}',
+                            btnOkOnPress: () {},
+                            btnOkIcon: Icons.cancel,
+                            btnOkColor: Colors.red)
+                          ..show();
+                      });
+                    }
+                  },
             text: 'CONSULTAR',
           ),
         ],
