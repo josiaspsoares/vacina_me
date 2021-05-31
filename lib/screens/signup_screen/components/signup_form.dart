@@ -1,9 +1,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:vacina_me/controllers/signup_controller/signup_controller.dart';
+import 'package:vacina_me/core/app_colors.dart';
 import 'package:vacina_me/core/app_text_styles.dart';
 import 'package:vacina_me/screens/common_components/custom_button.dart';
 import 'package:vacina_me/viewmodel/signup_viewmodel/signup_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class SignupForm extends StatefulWidget {
   @override
@@ -12,7 +14,6 @@ class SignupForm extends StatefulWidget {
 
 class _SignupFormState extends State<SignupForm> {
   final _formKey = GlobalKey<FormState>();
-  final _controller = SignupController();
   var model = SignupViewModel();
 
   TextEditingController _nameController = TextEditingController();
@@ -23,6 +24,8 @@ class _SignupFormState extends State<SignupForm> {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = context.watch<SignupController>();
+
     return Form(
       key: _formKey,
       child: Column(
@@ -52,6 +55,7 @@ class _SignupFormState extends State<SignupForm> {
               border: OutlineInputBorder(borderSide: BorderSide()),
             ),
             style: AppTextStyles.vaccinationForm,
+            keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -136,65 +140,75 @@ class _SignupFormState extends State<SignupForm> {
             items: dropdownMenuItems(),
           ),
           SizedBox(height: 25),
+          if (_controller.state == SignupState.loading)
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 20),
+              child: LinearProgressIndicator(
+                color: AppColors.primaryColor,
+              ),
+            ),
           CustomButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                model.name = _nameController.text;
-                model.email = _emailController.text;
-                model.cpf = _cpfController.text;
-                model.age = _ageController.text;
-                model.priorityGroupCode = _selectedPriorityGroupCode.toString();
+            onPressed: _controller.state == SignupState.loading
+                ? null
+                : () {
+                    if (_formKey.currentState!.validate()) {
+                      model.name = _nameController.text;
+                      model.email = _emailController.text;
+                      model.cpf = _cpfController.text;
+                      model.age = _ageController.text;
+                      model.priorityGroupCode =
+                          _selectedPriorityGroupCode.toString();
 
-                _controller.create(model).then((value) {
-                  if (value == 'success') {
-                    _formKey.currentState!.reset();
-                    AwesomeDialog(
-                        context: context,
-                        animType: AnimType.LEFTSLIDE,
-                        headerAnimationLoop: false,
-                        dialogType: DialogType.SUCCES,
-                        title: 'Sucesso',
-                        desc:
-                            'Cadastro realizado com sucesso! Você será comunicado quando chegar a hora de receber a vacina!',
-                        btnOkOnPress: () {
-                          Navigator.of(context).pushNamed('/');
-                        },
-                        btnOkIcon: Icons.check_circle,
-                        onDissmissCallback: () {
-                          debugPrint('Dialog Dissmiss from callback');
-                        })
-                      ..show();
-                  } else {
-                    AwesomeDialog(
-                        context: context,
-                        dialogType: DialogType.ERROR,
-                        animType: AnimType.RIGHSLIDE,
-                        headerAnimationLoop: false,
-                        title: 'Falha ao Realizar Cadastro',
-                        desc: value == '1062'
-                            ? 'Parece que você já realizou um cadastro anteriormente. Verifique o e-mail e o CPF informados!'
-                            : 'Ops! Houve um erro ao registrar suas informações. Por favor, entre em contato com nossa equipe! (ERRO: $value)',
-                        btnOkOnPress: () {},
-                        btnOkIcon: Icons.cancel,
-                        btnOkColor: Colors.red)
-                      ..show();
-                  }
-                }).onError((error, stackTrace) {
-                  AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.ERROR,
-                      animType: AnimType.RIGHSLIDE,
-                      headerAnimationLoop: false,
-                      title: 'Falha ao Realizar Cadastro',
-                      desc:
-                          'Ops! Houve um erro ao registrar suas informações. Por favor, entre em contato com nossa equipe\n\nERRO: ${error.toString()}',
-                      btnOkOnPress: () {},
-                      btnOkIcon: Icons.cancel,
-                      btnOkColor: Colors.red)
-                    ..show();
-                });
-              }
-            },
+                      _controller.create(model).then((value) {
+                        if (value == 'success') {
+                          _formKey.currentState!.reset();
+                          AwesomeDialog(
+                              context: context,
+                              animType: AnimType.LEFTSLIDE,
+                              headerAnimationLoop: false,
+                              dialogType: DialogType.SUCCES,
+                              title: 'Sucesso',
+                              desc:
+                                  'Cadastro realizado com sucesso! Você será comunicado quando chegar a hora de receber a vacina!',
+                              btnOkOnPress: () {
+                                Navigator.of(context).pushNamed('/');
+                              },
+                              btnOkIcon: Icons.check_circle,
+                              onDissmissCallback: () {
+                                debugPrint('Dialog Dissmiss from callback');
+                              })
+                            ..show();
+                        } else {
+                          AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.ERROR,
+                              animType: AnimType.RIGHSLIDE,
+                              headerAnimationLoop: false,
+                              title: 'Falha ao Realizar Cadastro',
+                              desc: value == '1062'
+                                  ? 'Parece que você já realizou um cadastro anteriormente. Verifique o e-mail e o CPF informados!'
+                                  : 'Ops! Houve um erro ao registrar suas informações. Por favor, entre em contato com nossa equipe! (ERRO: $value)',
+                              btnOkOnPress: () {},
+                              btnOkIcon: Icons.cancel,
+                              btnOkColor: Colors.red)
+                            ..show();
+                        }
+                      }).onError((error, stackTrace) {
+                        AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.ERROR,
+                            animType: AnimType.RIGHSLIDE,
+                            headerAnimationLoop: false,
+                            title: 'Falha ao Realizar Cadastro',
+                            desc:
+                                'Ops! Houve um erro ao registrar suas informações. Por favor, entre em contato com nossa equipe\n\nERRO: ${error.toString()}',
+                            btnOkOnPress: () {},
+                            btnOkIcon: Icons.cancel,
+                            btnOkColor: Colors.red)
+                          ..show();
+                      });
+                    }
+                  },
             text: 'CADASTRAR',
           ),
         ],
