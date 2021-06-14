@@ -113,9 +113,7 @@ class _VaccinationDataSearchFormState extends State<VaccinationDataSearchForm> {
                               btnOkText: "PRONTO",
                               btnOkColor:  AppColors.accentColor,
                               btnOkIcon: Icons.check_circle,
-                              onDissmissCallback: () {
-                                debugPrint('Dialog Dissmiss from callback');
-                              })
+                              )
                             ..show();
                         } else {
                           AwesomeDialog(

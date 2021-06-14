@@ -51,7 +51,7 @@ class CustomAppBar extends PreferredSize {
                     MenuItem(
                       text: 'Vacinação',
                       onTap: () {
-                        Navigator.of(context).pushNamed('/vacinacao');
+                        Navigator.of(context).pushNamed('/vacinacao/consulta');
                       },
                     ),
                   MenuItem(
