@@ -1,5 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vacina_me/controllers/vaccination_data_search_controller/vaccination_data_search_controller.dart';
 import 'package:vacina_me/core/app_colors.dart';

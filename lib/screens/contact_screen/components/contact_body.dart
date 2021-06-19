@@ -22,7 +22,7 @@ class ContactBody extends StatelessWidget {
               style: Theme.of(context).textTheme.headline1!.copyWith(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: size.width >= 1250 ? 102 : 80,
+                    fontSize: size.width >= 1250 ? 100 : 80,
                   ),
             ),
           ),
