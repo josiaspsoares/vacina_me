@@ -9,6 +9,10 @@ import 'package:vacina_me/screens/common_components/custom_icon_button.dart';
 import 'package:vacina_me/screens/common_components/custom_image_button.dart';
 
 const _githubUrl = 'https://github.com/josiassoares/VacinaMe';
+const _articleUrl =
+    'https://drive.google.com/file/d/1bLNZjff75g64a2H3RXUf3VdNkgxybTHH/view?usp=sharing';
+const _slidesUrl =
+    'https://www.canva.com/design/DAEhqB_nMZk/kWU95qHW7EJiKRfMdzXofg/view?utm_content=DAEhqB_nMZk';
 
 class MobileAboutBody extends StatelessWidget {
   const MobileAboutBody({
@@ -18,9 +22,8 @@ class MobileAboutBody extends StatelessWidget {
 
   final Size size;
 
-  void _launchURL() async => await canLaunch(_githubUrl)
-      ? await launch(_githubUrl)
-      : throw 'Could not launch $_githubUrl';
+  void _launchURL(String url) async =>
+      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
 
   @override
   Widget build(BuildContext context) {
@@ -81,20 +84,35 @@ class MobileAboutBody extends StatelessWidget {
                       headerTextColor: Colors.white,
                     ),
                     SizedBox(height: 25.0),
-                    Row(
+                    Wrap(
+                      runSpacing: 15,
+                      spacing: 15,
+                      runAlignment: WrapAlignment.center,
+                      alignment: WrapAlignment.center,
                       children: [
                         CustomImageButton(
-                          onPressed: _launchURL,
+                          onPressed: () {
+                            _launchURL(_githubUrl);
+                          },
                           imagePath:
                               'assets/images/about_screen/github_logo.png',
                           color: AppColors.homeButton,
                         ),
-                        SizedBox(width: 15.0),
                         CustomIconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _launchURL(_articleUrl);
+                          },
                           text: 'Artigo',
                           icon: FontAwesomeIcons.fileAlt,
                           color: AppColors.accentColor,
+                        ),
+                        CustomIconButton(
+                          onPressed: () {
+                            _launchURL(_slidesUrl);
+                          },
+                          text: 'Slides',
+                          icon: FontAwesomeIcons.slideshare,
+                          color: Colors.redAccent,
                         ),
                       ],
                     ),

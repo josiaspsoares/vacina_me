@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vacina_me/screens/common_components/app_bar.dart';
-import 'package:vacina_me/screens/signup_screen/components/signup_body.dart';
+import 'package:vacina_me/screens/vaccination_data_search_screen/components/vaccination_data_search_body.dart';
 import 'package:vacina_me/screens/vaccination_data_search_screen/mobile_vaccination_data_search_screen.dart';
 
 class VaccinationDataSearchScreen extends StatelessWidget {
@@ -19,7 +19,8 @@ class VaccinationDataSearchScreen extends StatelessWidget {
         width: size.width,
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/images/about_screen/about_background.png'),
+          image: AssetImage(
+              'assets/images/vaccination_data_search_screen/vaccination_data_search_background.png'),
           fit: BoxFit.cover,
         )),
         child: Scrollbar(
@@ -27,7 +28,7 @@ class VaccinationDataSearchScreen extends StatelessWidget {
           child: ListView(
             children: [
               SizedBox(height: size.height / 9),
-              SignupBody(),
+              VaccinationDataSearchBody(),
               SizedBox(height: size.height / 9),
             ],
           ),

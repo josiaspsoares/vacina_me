@@ -174,9 +174,7 @@ class _SignupFormState extends State<SignupForm> {
                                 Navigator.of(context).pushNamed('/');
                               },
                               btnOkIcon: Icons.check_circle,
-                              onDissmissCallback: () {
-                                debugPrint('Dialog Dissmiss from callback');
-                              })
+                              )
                             ..show();
                         } else {
                           AwesomeDialog(
