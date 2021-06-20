@@ -84,35 +84,41 @@ class MobileAboutBody extends StatelessWidget {
                       headerTextColor: Colors.white,
                     ),
                     SizedBox(height: 25.0),
-                    Wrap(
-                      runSpacing: 15,
-                      spacing: 15,
-                      runAlignment: WrapAlignment.center,
-                      alignment: WrapAlignment.center,
+                    Column(
                       children: [
-                        CustomImageButton(
-                          onPressed: () {
-                            _launchURL(_githubUrl);
-                          },
-                          imagePath:
-                              'assets/images/about_screen/github_logo.png',
-                          color: AppColors.homeButton,
+                        Row(
+                          children: [
+                            CustomImageButton(
+                              onPressed: () {
+                                _launchURL(_githubUrl);
+                              },
+                              imagePath:
+                                  'assets/images/about_screen/github_logo.png',
+                              color: AppColors.homeButton,
+                            ),
+                            SizedBox(width: 15),
+                            CustomIconButton(
+                              onPressed: () {
+                                _launchURL(_articleUrl);
+                              },
+                              text: 'Artigo',
+                              icon: FontAwesomeIcons.fileAlt,
+                              color: AppColors.accentColor,
+                            ),
+                          ],
                         ),
-                        CustomIconButton(
-                          onPressed: () {
-                            _launchURL(_articleUrl);
-                          },
-                          text: 'Artigo',
-                          icon: FontAwesomeIcons.fileAlt,
-                          color: AppColors.accentColor,
-                        ),
-                        CustomIconButton(
-                          onPressed: () {
-                            _launchURL(_slidesUrl);
-                          },
-                          text: 'Slides',
-                          icon: FontAwesomeIcons.slideshare,
-                          color: Colors.redAccent,
+                        SizedBox(height: 15),
+                        Row(
+                          children: [
+                            CustomIconButton(
+                              onPressed: () {
+                                _launchURL(_slidesUrl);
+                              },
+                              text: 'Slides',
+                              icon: FontAwesomeIcons.slideshare,
+                              color: Colors.redAccent,
+                            ),
+                          ],
                         ),
                       ],
                     ),
