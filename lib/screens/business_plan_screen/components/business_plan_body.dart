@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:native_pdf_view/native_pdf_view.dart';
+import 'package:vacina_me/core/app_colors.dart';
 
 class BusinessPlanBody extends StatefulWidget {
   @override
@@ -34,7 +35,9 @@ class _BusinessPlanBodyState extends State<BusinessPlanBody> {
                 'assets/images/logo.png',
                 alignment: Alignment.topCenter,
               ),
-              CircularProgressIndicator(),
+              CircularProgressIndicator(
+                color: AppColors.quaternaryColor,
+              ),
             ],
           ),
         ),
